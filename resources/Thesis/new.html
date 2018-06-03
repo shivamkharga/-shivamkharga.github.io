@@ -1,0 +1,430 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <title>TCP Tahoe Simulation</title>
+  </head>
+  <body>      
+    <h1 align="center">Welcome to TCP Tahoe Simulation Page</h1>
+      <div class=" alert-danger " role="alert"> The Project is under construction !!! <br> Please come back later</div>
+    <form>
+        <fieldset id = "fieldset">
+      <p id ="log"></p>
+
+        <div class="form-group">
+            <label for="winSize" class="label"><strong>Select Window Size</strong> </label>
+                  <select id="winSize" class="form-control small">
+                    <option>2</option>
+                    <option>4</option>
+                    <option>8</option>
+                    <option>16</option>
+                    <option>32</option>
+                    <option>64</option>
+                    <option>128</option>
+                  </select>
+            </div>
+        <br>
+
+        <div class="form-group">
+            <label for="totalPackets" class="label"><strong>Enter Total number of packets</strong></label>
+            <input class="form-control small" type="int"  id="totalPackets"> <p id="error"></p>
+        </div>
+        <br/>
+            <input type=button  class="btn btn-primary button" id="submit" value="Start">
+            <input type=button  class="btn btn-primary button" id="drop" value="Drop Packets">
+            <input type=button  class="btn btn-primary button" id="reset" value="Reset">
+        <div class="totalCounter"><strong>Total Packets Sent : </strong><p id="counter"></p></div>
+        <div class="currthresh"><strong>Current Threshhold : </strong><p id="thresh"></p></div>
+
+        </fieldset>
+    </form>
+    
+    
+            
+    <p><div id="graph"></div></p>
+      
+    
+         <script>
+            document.getElementById("reset").onclick = function()
+            {
+                location.reload();
+            }
+            document.getElementById("drop").style.backgroundColor="grey";
+            document.getElementById("drop").style.borderColor="grey";
+            document.getElementById("drop").disabled = true;
+            
+            var height= 600;
+            var width =1200; 
+            
+              var svg = d3.select("#graph").append("svg")
+                        .attr("id","chart")
+                        .attr("width", width)
+                        .attr("height",height);  
+                
+             initialXaxis();
+             initialYaxis();
+             buildGridlines();
+             
+             
+             
+             function initialYaxis()
+                {
+                    var y = d3.scaleLinear()
+                            .domain([5,0])
+                            .range([100,height]);
+                    
+                    var y_axis = d3.axisLeft()
+                                .scale(y)
+                                .ticks(5);
+                    
+                    svg.append("g")
+                    .attr("transform", "translate(59, -51)")
+                            .attr("id","initial-Y-axis")
+                          .call(y_axis);
+                }
+                
+                function initialXaxis()
+                {
+                     var x = d3.scaleLinear()
+                                  .domain([0,35])
+                                    .range([60,width-35]);
+                    
+                    var xAxis=d3.axisBottom()
+                                .scale(x);
+                                
+                        svg.append("g")         // Add the X Axis
+                            .attr("transform", "translate(0,550 )")
+                            .classed("x-axis",true)
+                            .call(xAxis);
+                }
+             
+                function buildGridlines()
+                 {
+                     var y = d3.scaleLinear()
+                            .domain([5,0])
+                            .range([100,height]);
+                     
+                     
+                      var x = d3.scaleLinear()
+                                  .domain([0,35])
+                                    .range([60,width-35]);
+                     
+                    function make_x_axis()
+                     {        
+                        return d3.axisBottom()
+                            .scale(x)
+                             .ticks(30)
+                    }
+
+                    function make_y_axis()
+                     {  
+                         
+                        return d3.axisLeft()
+                            .scale(y)
+                            .ticks(5)
+                    }
+                     
+                    
+                     
+                     svg.append("g")         
+                            .attr("class", "grid")
+                            .attr("transform", "translate(0,550)")
+                            .call(make_x_axis()
+                                .tickSize(100-height, 0, 0)
+                                .tickFormat(""))
+
+                    svg.append("g")         
+                        .attr("class", "grid")
+                        .attr("transform", "translate(60,-51)")
+                        .call(make_y_axis()
+                            .tickSize(95-width, 0, 0)
+                            .tickFormat("") )
+                 }
+             
+            document.getElementById("fieldset").addEventListener('keypress', function(event) {
+                    if (event.keyCode == 13) {
+                        event.preventDefault();
+                        document.getElementById("submit").click();
+                    }
+                });
+             document.getElementById("submit").onclick = function() 
+            {
+                var packets = document.getElementById("totalPackets").value;
+                if(packets==false || isNaN(packets))
+                   {
+                    document.getElementById("error").innerHTML= '<div class="alert alert-danger " role="alert">' +"Please, enter a valid number!"+' </div>';
+
+                  }
+             
+            else{
+                document.getElementById("error").innerHTML="";
+                document.getElementById("drop").disabled = false;
+                document.getElementById("drop").style.backgroundColor="red";
+                document.getElementById("drop").style.borderColor="red";
+                
+                document.getElementById("submit").style.backgroundColor="grey";
+                document.getElementById("submit").style.borderColor="grey";
+                document.getElementById("submit").disabled = true;
+                
+               
+
+                var winSize = document.getElementById("winSize").value;
+                
+                var bars=[];
+                var barslabel=[];
+                var axislabel=[];
+                var axisylabel=[];
+                
+                var ssthresh = winSize;
+                var totalPackets = document.getElementById("totalPackets").value;
+                var data=[];
+                
+                var index=0;
+                
+                document.getElementById("thresh").innerHTML= ssthresh;
+
+                var x= d3.scaleLinear()
+                        .domain([0,35])
+                        .range([60,width-35]);
+                
+                var max= Math.ceil(winSize/5)*5;;
+                
+                var y= d3.scaleLinear()
+                        .domain([0,max])
+                        .range([0,height-100]);
+                
+               
+                
+                changeYaxis();
+                changeXaxis();
+                buildData(ssthresh);
+                console.log(data);
+                buildGraph();
+                
+                function successMessage()
+                {
+                  document.getElementById("log").innerHTML= '<div class="alert alert-success " role="alert">' +"All packets have been successfully transmitted.<br>Click on Reset button to start again."+' </div>';   
+                }
+                
+                function changeYaxis()
+                {
+                    document.getElementById("initial-Y-axis").style.opacity="0";
+                    
+                    var y = d3.scaleLinear()
+                            .domain([max,0])
+                            .range([100,height]);
+                    
+                    var y_axis = d3.axisLeft()
+                                .scale(y)
+                                .ticks(5);
+                    
+                    svg.append("g")
+                    .attr("transform", "translate(59, -51)")
+                            .classed("change-y-axis",true)
+                            .call(y_axis);
+                }
+                
+                function changeXaxis()
+                {
+                     var x = d3.scaleLinear()
+                                  .domain([0,35])
+                                    .range([60,width-35]);
+                    
+                    var xAxis=d3.axisBottom()
+                                .scale(x);
+                                
+                        svg.append("g")         // Add the X Axis
+                            .attr("transform", "translate(0,550 )")
+                            .classed("x-axis",true)
+                            .call(xAxis);
+                }
+                
+                
+                
+                function buildData(ssthresh)
+                {
+                    var sum=0;
+                    if(data.length>0)
+                    {
+                        data.splice(index); 
+                        for(i = 0; i<index;i++)
+                        {
+                            sum+=data[i];
+                        }
+                    }
+
+                    var packet=1;
+                    
+                    while (sum <  totalPackets)
+                    {
+                        data.push(packet);
+                        sum+=packet;
+                        if(packet < winSize)
+                        {
+                            if(packet < ssthresh)
+                            {
+                            packet = packet * 2;
+                            
+                            }
+                            else 
+                            {
+                            packet = packet + 1;
+                            }
+                        }
+                        if(sum+packet>=totalPackets)
+                        {
+                            packet=totalPackets-sum;
+                        }
+                    }
+                    
+                }
+                
+                
+                
+                document.getElementById("drop").onclick = function()
+                {
+                    ssthresh=ssthresh/2;                    
+                    document.getElementById("thresh").innerHTML= ssthresh;
+                    buildData(ssthresh);
+                    console.log(data);
+
+                }
+                
+                
+                 function buildGraph()
+                 {
+                    
+                
+                        var plot = setInterval(onePoint,1000);
+                        var moved =1;
+
+                        function onePoint()
+                        {
+                            if(index<35)
+                            {
+                               
+
+
+                                console.log(index);
+                                bars.push(svg.selectAll("bar")
+                                .data([data[index]])
+                                .enter()
+                                    .append("rect")
+                                    .classed("bar",true)
+                                    .attr("x",x(index))
+                                    .attr("y", height-50-y(data[index]))
+                                    .attr("width",(x(1)-x(0)))
+                                    .attr("transform","translate(0,0)")
+                                    .attr("height",function(d,i){return y(d);}));
+                                
+                                barslabel.push(svg.append("text")
+                                        .classed("bar-label",true)
+                                        .attr("x",x(index)+8)
+                                        .attr("dx",18)
+                                        .attr("transform","translate(0,0)")
+                                        .attr("y", height-55-y(data[index]))
+                                        .text(data[index]));
+                                
+                                axislabel.push(svg.append("text")
+                                        .classed("axis-label",true)
+                                        .attr("x",x(index)+10)
+                                        .attr("transform","translate(0,0)")
+                                        .attr("y", height-34)
+                                        .text(function (){
+                                                        return index > 8 ? (index+1) : "0" + (index+1);
+                                                    }));
+                                
+                                
+                                
+                            }
+                            else
+                            {
+                                console.log(index);
+                                bars.push(svg.append("rect")
+                                    .classed("bar",true)
+                                    .attr("x",x(index))
+                                    .attr("y", height-50-y(data[index]))
+                                    .attr("width",(x(1)-x(0)))
+                                    .attr("height",y(data[index])));
+                                
+                                barslabel.push(svg.append("text")
+                                        .classed("bar-label",true)
+                                        .attr("x",x(index)+8)
+                                        .attr("dx",18)
+                                        .attr("y", height-55-y(data[index]))
+                                        .text(data[index]));
+                                
+                                axislabel.push(svg.append("text")
+                                        .classed("axis-label",true)
+                                        .attr("x",x(index)+10)
+                                        .attr("transform","translate(0,0)")
+                                        .attr("y", height-34)
+                                        .text(function (){
+                                                        return index > 8 ? index+1 : "0" + index+1;
+                                                    }));
+                                
+                                
+                                
+                                for(i =index; i>index-35; i--)
+                                {
+                                    bars[i].attr("transform","translate("+ moved*(x(0)-x(1))+",0)");
+                                    barslabel[i].attr("transform","translate("+ moved*(x(0)-x(1)) +",0)");
+                                    axislabel[i].attr("transform","translate("+ moved*(x(0)-x(1)) +",0)");
+
+                                }
+                                for(i=index-35;i>=0;i--)
+                                {
+                                    bars[i].classed("hidden",true);
+                                    barslabel[i].attr("hidden",true);
+                                    axislabel[i].attr("hidden",true);
+
+                                }
+                                
+                                moved++;
+                            }
+                            
+                            function sum() {
+                                var total = 0;
+                                for(var i=0; i<=index; i++)
+                                    {
+                                        total+= data[i];
+                                    }
+                                return total;}
+                            
+                            document.getElementById("counter").innerHTML= sum();
+                            index++;
+                            if(index>=data.length)
+                                {   
+                                    clearInterval(plot);
+                                    successMessage();
+                                    document.getElementById("drop").style.backgroundColor="grey";
+                                    document.getElementById("drop").style.borderColor="grey";
+                                    document.getElementById("drop").disabled = true;
+                                            
+                                }
+                        }
+                     
+                    }
+            
+            }
+             }
+             
+            
+             
+            </script>
+            
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

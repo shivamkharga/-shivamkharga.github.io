@@ -1,0 +1,379 @@
+html{
+    margin:0px;
+    background-image: url("../resources/images/bckg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+body{
+    font-family:"Josefin Slab";
+    margin: 0px;
+    
+    background-color: rgba(0,0,0,0.6);
+    color:lavender;
+    text-align: center;
+}
+
+.alert{
+width:80vw;
+font-size: 20px;
+text-align:left;
+margin:auto;
+
+}
+
+#top{
+text-align: center;  
+color: white;
+font-size: 4.5vh;
+background-color:rgba(0,0,0,0.95);
+position: fixed;
+top: 0;
+width: 100%;
+height: 12vh;
+z-index:1000;
+margin: 0;
+padding-top: 2.5vh;
+}
+
+.openbtn{
+    position: fixed;
+    right: 90%;
+    top:2.5vh;
+    cursor:pointer;
+
+}
+
+.closebtn {
+    position: fixed;
+    top: 13vh;
+    right: 2vw;
+    font-size: 5.5vh;
+    color:white;
+    z-index:1000;
+    display: none;
+}
+
+#profile-img{
+    border:1px solid black;
+    width: 152px;
+    height: 180px;
+    border-radius: 50%;
+    margin: auto;
+    margin-top:14vh;
+
+}
+
+#profile-caption{
+   margin: 3vh 2vw;
+    font-size: 7vw;
+    color: aliceblue;
+    text-align: center;
+}
+.navigation{
+    width: 100%;
+    height:100%;
+    background-color: rgba(80,80,80,1);
+    position: fixed;
+    top: 12vh;
+    font-size:3.5vh;
+    display: none;
+    z-index: 1200;
+}
+.navigation li{
+    padding: 2.2vh 2vw;
+    list-style-type: none;  
+    color:white;
+    text-align: left;
+    border-bottom: 1px solid rgba(155,155,155,0.6);
+}
+.navigation li:hover{
+        color:white;
+        font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+#first,.hi{
+    margin:5vh 2.5vw;
+
+    font-size: 5.2vw;
+
+}
+
+#interest-box, #goal-box{
+    font-size: 3vw;
+    padding: 5vw 5vh;
+    color:black;
+}
+
+.interest{
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0px 30px;
+    
+}
+.panel-title {text-align: left;}
+.panel-body{font-size: 4vw; text-align: left;}
+.panel-body figure{float:left; margin: 2vh 2.5vw;}
+.panel-body figcaption{margin: 2vh 2.5vw;}
+.box-collection{
+        margin:auto;
+        padding-left: 3vw;
+}
+
+.box{
+    width: 275px;
+    height: 275px;
+    margin-bottom:10vh; 
+    margin-left: 22vw;
+    position:relative;
+    float:left;
+    }
+
+
+
+
+.box-before{
+transform:rotate(3deg);
+    z-index:30;
+}
+
+.box-after{
+    transform:rotate(-3deg);
+    z-index:20;
+}
+
+.box-before, .box-after{
+    
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    border: 40px solid #fff;
+    transition: 0.25s cubic-bezier(0.55, -0.5, 0.48, 1.51) all;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.box-img{
+    width: 225px;
+    height: 200px;
+    border: 1px solid black;
+    position: absolute;
+    z-index:40;
+    left:25px;
+    top:35px;
+}
+.box-caption{
+    width:224px;
+    height:45px;
+    font-weight: bold;
+    font-size: 25px;
+    padding:8px;
+    text-align: center;
+    color: aliceblue;
+    background-color:  rgba(0,0,0,0.9);
+    position: absolute;
+    top:189px;
+    left:25px;
+    z-index:41;
+}
+
+.light-right-head{
+    text-align: right;
+    font-size:1vh;
+    font-weight:bold;
+    float:right;
+}
+.box:hover{
+    cursor: pointer;
+}
+
+#skills-box{
+    padding: 5vw 5vh;
+    clear: both;
+    color: black;
+    
+}
+.books{font-size:4vw;}
+
+ #light1, #light2, #light3  , #light4, #light5, #light6{
+     display: none;
+}
+
+#content{
+    width:85vw;
+    color: black;
+    text-align: center;
+    padding: 5px 2vw;
+    margin:auto;
+    background-color: rgba(236,235,234,1.0);
+    border-radius: 6px;
+}
+
+.form{
+    width:80vw;
+    margin:auto;
+}
+
+.form-group{
+    font-size: 20px;
+    text-align: left;
+}
+.text-muted{
+    font-size: 3.5vw;
+    margin:10px;
+    color: black;
+}
+
+form button{
+    width: 140px;
+    font-size: 30px;
+}
+
+.icon{
+    height: 45px;
+    width:45px;
+    background-color: white;
+    border:2px solid black;
+    margin: 0px 2px;
+    padding:2px;
+    border-radius: 12px;
+}
+
+.back-light-box{
+    position: fixed;
+    top:12vh;
+    left:0;
+    margin:0px;
+    height: 100%;
+    width: 100vw;
+    padding: 0;
+    background-color: rgba(80,80,80,1);
+    z-index:90;
+}
+
+.light-box{
+    position: fixed;
+    height: 80vh;
+    width: 94vw;
+    top: 15vh;
+    margin:1vh 1vw;
+    background-color: lightgray;
+    z-index:500;
+    color:black;
+    border-radius:7px;
+    font-size:3.5vw;
+}
+
+.light-box-head{
+    text-align: left;
+    font-weight: bold;
+    font-size:6vw; 
+    margin-left: 30px;
+    float:left;
+}
+.light-box-close{
+    font-weight: bold;
+    position: relative;
+    top:0;
+    font-size:10vw; 
+    float:right;
+    color:black;
+    margin-right: 5vw ;
+}
+.details{
+    font-family: "Times New Roman";
+    font-size:3.5vw;
+    text-align: left;
+    padding:10px;
+    margin:1vh 1vw;
+}
+hr{
+    clear:both;
+}
+
+
+thead,tbody{
+        border:3px solid skyblue;
+        color:black;
+    font-size:3.1vw;
+
+}
+table{
+        margin-left: 1vw;
+}
+th{
+    border:1px solid skyblue;
+    padding: 0.5vw 1.4vw;
+    text-align: center;
+    background-color:rgba(255,255,255,0.8);
+}
+
+tr:nth-child(odd){
+    background-color: rgba(204,239,255,0.6);
+}
+tr:nth-child(even){
+    background-color: rgba(255,255,255,0.8);
+}
+td{
+    border:1px solid skyblue;
+    padding: 0.5vw 1.4vw;
+    text-align: center;
+}
+
+.detail-img{
+    width:63vw;
+    height: 33vh;
+    margin:0 12vw;
+    border: 1px solid black;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.detail-desc{
+    font-size: 3.5vw;
+    margin:1vh 13vw;
+}
+.details ol{
+    font-size:3.5vw;
+}
+
+#light4 .details{margin:0;padding:0 1vw;}
+#light4 .work-head{
+    font-size:2.55vw;
+    font-weight: bold;
+}
+ #light4 .panel-body{
+    padding:1vh 0.5vw;
+    
+    font-size: 3.1vw;
+}
+
+#resume-img{
+    height: 51vh;
+    width:86vw;
+    overflow: auto;
+    border:1px solid black;
+    border-radius:4px;
+}
+
+#resume-img img{
+    width: 100% ;
+}
+button{
+    background-color: black;
+    border:3px black solid;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    color:white;
+    border-radius:3px;
+    margin-top: 10px;
+}
+.navigation li{
+        color:white;
+}
+#goal-box li{
+    font-size: 3.5vw;
+    text-align: left;
+    margin: 1px;
+}

@@ -1,0 +1,173 @@
+
+h1{
+    margin-bottom:40px;
+}
+#chart{
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+}
+
+.bar{
+    fill:black;
+    stroke: white;
+    stroke-width: 0.5px;
+    opacity: 0.7;
+    shape-rendering:crispEdges;
+    
+}
+
+.alert-danger{
+    width:60vw;
+    font-size: 150%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+    border-radius:10px;
+}
+ .small{
+    width: 100px;
+    /** border-color: black; **/
+}
+
+
+
+.label{
+    float: left;
+    margin-right: 25px;
+    margin-top: 8px;
+}
+
+form{
+    width: 1200px;
+    margin-top: 30px;
+    margin:auto;
+    margin-bottom: 10px;
+}
+
+.button{
+    margin:5px;
+    margin-right: 50px;
+    width: 120px;
+}
+
+#reset{
+    width: 120px;
+    background-color: blue;
+}
+#drop{
+    float: left;
+}
+#submit{
+    background-color: green;
+    border-color: green;
+    float:left;
+}
+
+.alert{
+    margin:10px;
+    width:250px;
+}
+
+#graph{
+    width: 1201px;
+    margin:auto;
+}
+
+.bar-label{
+    text-anchor:end;
+    fill:black;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.totalCounter{
+    width: 200px;
+    float: right;
+    padding-top: 12px;
+
+}
+
+.currthresh{
+    width: 225px;
+    float: right;
+    padding-top: 12px;
+}
+
+#counter{
+    display: inline;
+}
+
+#thresh{
+    display: inline;
+}
+
+.axis-label{
+    font-family: serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.bar-label{
+        font-family: serif;
+}
+
+.x-axis{
+font-size: 0;
+}
+
+body{
+    font-family: "serif";
+    margin:40px;
+    padding:10px;
+    margin-top: 20px;
+}
+
+.change-y-axis{
+    font-weight: bold;
+}
+
+#initial-Y-axis{
+    font-size: 0;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.1;
+}
+.grid path {
+      stroke-width: 0;
+}
+
+#log{
+    float: right;
+    width: 380px;
+    height:80px;
+}
+.alert-success{
+ width: 380px;
+    height:80px;   
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background:#CBCBCB; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}

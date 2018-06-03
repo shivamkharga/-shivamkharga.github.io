@@ -1,0 +1,510 @@
+html{
+    margin:0px;
+    background-image: url("../resources/images/bckg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+body{
+    font-family:Josefin Slab;
+    margin: 0px;
+    background-color: rgba(0,0,0,0.6);
+    color:lavender;
+    padding:25px;
+    padding-left: 0;
+    font-size: 40px;
+    text-align: center;
+}
+.alert{
+width:500px;
+font-size: 20px;
+text-align:left;
+margin:auto;
+
+}
+.light-right-head{
+    text-align: right;
+    font-size:2vh;
+    font-weight:bold;
+    float:right;
+}
+
+#top{
+text-align: center;  
+color: white;
+font-size: 6vh;
+background-color:rgba(0,0,0,0.5);
+position: fixed;
+top: 0;
+width: 100%;
+padding-top:4vh; 
+height: 15vh;
+z-index:1000;
+}
+
+#goal-box li{
+    font-size: 30px;
+    text-align: left;
+    margin: 1px;
+}
+
+main {
+    padding-top:150px;
+}
+
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 36px;
+    margin-left: 50px;
+    color:white;
+}
+
+
+#sidenav{
+    width: 0;
+    height: 100%;
+    border:black solid 1px;
+    position: fixed;
+    top: 13vh;
+    background-color: rgba(0,0,0,0.5);
+    margin: 10px 10px 0 0;
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+    transition: 0.5s;
+    overflow: hidden;
+    z-index:100;
+}
+
+#profile-img{
+    border:1px solid black;
+    width: 55%;
+    height: 20vh;
+    border-radius: 50%;
+    position: relative;
+    top: 2vh;
+    
+    margin: 1px;
+}
+
+#profile-caption{
+    position: relative;
+    top: 2vh;
+    font-size: 3vh;
+    color: aliceblue;
+    text-align: center;
+}
+
+.navigation{
+    width: 100%;
+    height:60vh;
+    position: absolute;
+    bottom:0;
+    font-size:3vh;
+    padding-top: 10px;
+    background-color: black;
+}
+
+.navigation li{
+        color:white;
+}
+.navigation a:hover{
+        color:white;
+        font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-bar{
+        width: 100%;
+        height:5vh;
+        padding: 1vh;
+        text-align: left;
+        z-index: 10;
+
+}
+.nav-bar:hover{
+    font-weight:24px;
+  
+}
+.openbtn{
+    position: fixed;
+    right: 90%;
+    top:22px;
+    font-size:40px;
+    cursor:pointer;
+}
+main{
+    transition: 0.5s;
+    margin-left: 30px;
+}
+
+#first{
+    height: 470px;
+    font-size: 140px;
+    text-align: center;
+    margin:auto;
+    padding: 150px 25px;
+    /**
+    */
+}
+.panel-title{
+    font-size: 2vw;
+    text-align: left;
+}
+
+.panel-body{
+    font-size: 1vw;
+}
+
+#content{
+    clear:both;
+    font-size: 25px;
+    padding: 3px;
+    color: black;
+    text-align: center;
+    margin:0 100px 0 100px;
+    background-color: rgba(236,235,234,0.8);
+    border-radius: 10px;
+}
+.form{
+    width:450px;
+    margin:auto;
+}
+
+.form-group{
+    font-size: 20px;
+    text-align: left;
+}
+.text-muted{
+    font-size: 20px;
+    margin:10px;
+    color: black;
+}
+
+form button{
+    width: 140px;
+    font-size: 30px;
+}
+
+.box-collection{
+        margin:auto;
+        padding-left: 30px;
+}
+
+.back-light-box{
+    position: fixed;
+    top:110px;
+    left:0;
+    margin:0px;
+    height: 100%;
+    width: 100vw;
+    padding: 0;
+    background-color: rgba(0,0,0,0.75);
+    z-index:90;
+}
+
+.light-box{
+    position: fixed;
+    height: 70vh;
+    width: 50vw;
+    top: 118px;
+    left: 300px;
+    margin:auto;
+    background-color: lightgray;
+    z-index:500;
+    color:black;
+    border-radius:10px;
+    font-size:45%;
+}
+
+.light-box-head{
+    text-align: left;
+    font-weight: bold;
+    font-size:30px; 
+    margin-left: 30px;
+    float:left;
+}
+.light-box-close{
+    font-weight: bold;
+    position: relative;
+    top:0;
+    font-size:40px; 
+    float:right;
+    color:black;
+    margin-right: 40px;
+}
+.details{
+    font-family: "Times New Roman";
+    font-size:1.3vw;
+    text-align: left;
+    padding:10px;
+    margin:1vh 1vw;
+    
+}
+hr{
+    clear:both;
+}
+.box:hover{
+    cursor: pointer;
+}
+#light1, #light2, #light3, #light4, #light5, #light6{
+    display: none;
+}
+
+
+
+thead,tbody{
+        border:3px solid skyblue;
+        color:black;
+    font-size:1.2vw;
+
+}
+table{
+        margin-left: 1vw;
+}
+th{
+    border:1px solid skyblue;
+    padding: 0.5vw 1.4vw;
+    text-align: center;
+    background-color:rgba(255,255,255,0.8);
+}
+
+tr:nth-child(odd){
+    background-color: rgba(204,239,255,0.6);
+}
+tr:nth-child(even){
+    background-color: rgba(255,255,255,0.8);
+}
+td{
+    border:1px solid skyblue;
+    padding: 0.5vw 1.4vw;
+    text-align: center;
+}
+
+.detail-img{
+    width:23vw;
+    height: 33vh;
+    margin: 4vh 0vw;
+    border: 1px solid black;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    float: left;
+}
+
+.detail-desc{
+    font-size: 1.2vw;
+    margin-top: 8vh;
+    margin-left: 2vw; 
+    float:left;
+}
+#interest-box{
+padding: 100px;
+color: black;
+}
+
+#goal-box{
+padding:100px;
+color: black;
+}
+
+#skills-box{
+    padding: 100px;
+clear: both;
+color: black;
+}
+
+.interest{
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0px 30px;
+    
+}
+figure{
+    float: left;
+    margin: 40px;
+    font-size: 25px;
+}
+.details ol{
+    font-size:1.1vw;
+}
+
+.box{
+    width: 225px;
+    height: 225px;
+    margin-bottom:100px; 
+    margin-left: 150px;
+    margin-top:50px;
+    position:relative;
+    left:0;
+    float:left;
+    }
+
+
+
+.box-before{
+transform:rotate(3deg);
+    z-index:30;
+}
+
+.box-after{
+    transform:rotate(-3deg);
+    z-index:20;
+}
+
+.box-before, .box-after{
+    
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    border: 40px solid #fff;
+    transition: 0.25s cubic-bezier(0.55, -0.5, 0.48, 1.51) all;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.box-img{
+    width: 175px;
+    height: 160px;
+    border: 1px solid black;
+    position: absolute;
+    z-index:40;
+    left:25px;
+    top:35px;
+}
+.box-caption{
+    width:174px;
+    height:45px;
+    font-weight: bold;
+    font-size: 20px;
+    padding:7px;
+    text-align: center;
+    color: aliceblue;
+    background-color:  rgba(0,0,0,0.9);
+    position: absolute;
+    top:150px;
+    left:25px;
+    z-index:41;
+    
+}
+
+.group-book{
+    width:500px;
+    margin: 0px 25px 0px 0px;
+    float:left;
+}
+.books {
+    font-family: "Times New Roman";
+    width: 200px;
+    height: 35px;
+    margin: 4px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.8);
+	color:gold;
+    padding-top:5px;
+    font-size:20px;
+    text-align:center;
+    background-color: maroon;
+    position: relative;
+    -webkit-animation: mymove 25s infinite; /* Safari 4.0 - 8.0 */
+    animation: mymove 25s infinite alternate;
+}
+
+.icon{
+    height: 60px;
+    width:60px;
+    background-color: white;
+    border:2px solid black;
+    margin: 0px 10px;
+    padding: 2px;
+    border-radius: 12px;
+}
+#resume-img{
+    height: 46vh;
+    width:46vw;
+    overflow: auto;
+    border:1px solid black;
+    border-radius:4px;
+}
+
+#resume-img img{
+    width: 100% ;
+}
+
+/* Safari 4.0 - 8.0 */
+.book1 {-webkit-animation-timing-function: linear;}
+.book2 {-webkit-animation-timing-function: ease;}
+.book3 {-webkit-animation-timing-function: ease-in;}
+.book4 {-webkit-animation-timing-function: ease-out;}
+.book5 {-webkit-animation-timing-function: ease-in-out;}
+
+/* Standard syntax */
+.book1 {animation-timing-function: linear;}
+.book2 {animation-timing-function: ease;}
+.book3 {animation-timing-function: ease-in;}
+.book4 {animation-timing-function: ease-out;}
+.book5 {animation-timing-function: ease-in-out;}
+
+
+.panel-title a:hover{
+    text-decoration: none;
+}
+
+.nav-bar a{
+    color:white;
+    text-decoration: none;
+}
+.work-head{
+    font-size: 2vh;
+    font-weight: bold;
+}
+.nav-bar a:hover,.nav-bar a:visited, work-head:hover{
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    from {left: 0px;}
+    to {left: 200px;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    from {left: 0px;}
+    to {left:200px;}
+}
+
+object{
+    overflow: auto;
+}
+button{
+    background-color: black;
+    border:1px black solid;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    color:white;
+    border-radius:3px;
+    margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height:10px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background:#CBCBCB; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
+}
